@@ -184,7 +184,7 @@ ul {
 }
 
 /* #region loader */
-.loader {
+.loader.is-active {
   width: 48px;
   height: 48px;
   border: 5px dotted #4505f4;

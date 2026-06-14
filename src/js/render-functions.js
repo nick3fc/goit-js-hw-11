@@ -60,7 +60,7 @@ export function createGallery(images) {
 }
 
 // ----------- ------------------------------ ----------
-// ----------- export functions createGallery ----------
+// ----------- export functions clearGallery ----------
 // ----------- ------------------------------ ----------
 
 export function clearGallery(images) {
@@ -75,18 +75,16 @@ export function clearGallery(images) {
 // ----------- ------------------------------ ----------
 
 export function showLoader(arg) {
-  // console.log('arg:', arg);
-  const loaderPlace = document.querySelector('.container');
-
-  if (loaderPlace.querySelector('.loader')) return;
-
-  loaderPlace.insertAdjacentHTML('beforeend', `<span class="loader"></span>`);
-  const loader = loaderPlace.querySelector('.loader');
+  const loader = document.querySelector('.loader');
+  loader.classList.add('is-active');
 }
+// ----------- ------------------------------ ----------
+// -----------   export function hideLoader   ----------
+// ----------- ------------------------------ ----------
 
 export function hideLoader(arg) {
-  if (!document.querySelector('.loader')) return;
-  const loader = document.querySelector('.loader').remove();
+  const loader = document.querySelector('.loader');
+  loader.classList.remove('is-active');
 }
 
 // +++++++++++ ++++++++++++++++++++++++++++++ +++++++++++
