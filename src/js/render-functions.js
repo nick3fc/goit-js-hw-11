@@ -2,6 +2,11 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+  showCounter: false,
+});
 // ----------- ------------------------------ ----------
 // ----------- export functions createGallery ----------
 // ----------- ------------------------------ ----------
@@ -51,11 +56,11 @@ export function createGallery(images) {
   galleryList.insertAdjacentHTML('beforeend', newGalleryItems);
 
   // -----------gallery-click code----------
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-    showCounter: false,
-  });
+  // const lightbox = new SimpleLightbox('.gallery a', {
+  //   captionsData: 'alt',
+  //   captionDelay: 250,
+  //   showCounter: false,
+  // });
   lightbox.refresh();
 }
 
