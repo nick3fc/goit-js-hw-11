@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log('searchString:', searchString);
     showLoader('waiting...');
     const searchResult = getImagesByQuery(searchString)
-      .then(response => {
-        handleResponse(response.data);
+      .then(data => {
+        handleResponse(data);
       })
       .catch(error => {
         handleError(error);
