@@ -1,31 +1,31 @@
-import{a as u,S as f,i}from"./assets/vendor-CgWX3-ZD.js";(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const n of s.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&l(n)}).observe(document,{childList:!0,subtree:!0});function r(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerPolicy&&(s.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?s.credentials="include":e.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function l(e){if(e.ep)return;e.ep=!0;const s=r(e);fetch(e.href,s)}})();function d(t){return u.get("https://pixabay.com/api/",{params:{key:"56293122-e27c6b73e2974564ba58f2b50",q:t,image_type:"photo",orientation:"horizontal",safesearch:!0}})}function g(t){const o=document.querySelector(".gallery"),r=t.map(e=>`<li class="gallery-item">
-      <a class="gallery-link" href="${e.largeImageURL}">
+import{a as u,S as f,i}from"./assets/vendor-CgWX3-ZD.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const l of e)if(l.type==="childList")for(const n of l.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&o(n)}).observe(document,{childList:!0,subtree:!0});function r(e){const l={};return e.integrity&&(l.integrity=e.integrity),e.referrerPolicy&&(l.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?l.credentials="include":e.crossOrigin==="anonymous"?l.credentials="omit":l.credentials="same-origin",l}function o(e){if(e.ep)return;e.ep=!0;const l=r(e);fetch(e.href,l)}})();function d(t){return u.get("https://pixabay.com/api/",{params:{key:"56293122-e27c6b73e2974564ba58f2b50",q:t,image_type:"photo",orientation:"horizontal",safesearch:!0}})}const g=new f(".gallery a",{captionsData:"alt",captionDelay:250,showCounter:!1});function m(t){const s=document.querySelector(".gallery"),r=t.map(o=>`<li class="gallery-item">
+      <a class="gallery-link" href="${o.largeImageURL}">
         <img
           class="gallery-image"
-          src="${e.webformatURL}"
+          src="${o.webformatURL}"
         
-          alt="${e.tags}"
+          alt="${o.tags}"
         />
       </a>
       
       <ul class='gallery-image-infolist'>
         <li class='info-item'>
         <span class="info-title">Likes</span>
-        <span class='info-value'>${e.likes}</span>
+        <span class='info-value'>${o.likes}</span>
         </li>
         <li class='info-item'>
         <span class="info-title">Views</span>
-        <span class='info-value'>${e.views}</span>
+        <span class='info-value'>${o.views}</span>
         </li>
         <li class='info-item'>
         <span class="info-title">Comments</span>
-        <span class='info-value'>${e.comments}</span>
+        <span class='info-value'>${o.comments}</span>
         </li>
         <li class='info-item'>
         <span class="info-title">Downloads</span>
-        <span class='info-value'>${e.downloads}</span>
+        <span class='info-value'>${o.downloads}</span>
         </li>
       </ul>
       
-    </li>`).join("");o.insertAdjacentHTML("beforeend",r),new f(".gallery a",{captionsData:"alt",captionDelay:250,showCounter:!1}).refresh()}function m(t){const o=document.querySelector(".gallery");o.innerHTML=""}function p(t){document.querySelector(".loader").classList.add("is-active")}function c(t){document.querySelector(".loader").classList.remove("is-active")}let a=[];document.addEventListener("DOMContentLoaded",()=>{console.log("DOM loaded");const t=document.querySelector(".form");t.addEventListener("submit",o=>{o.preventDefault(),m();const r=new FormData(o.currentTarget).get("search-text").trim();if(!r){console.log("Поле порожнє або містить лише пробіли"),i.show({balloon:!0,closeOnEscape:!0,closeOnClick:!0,backgroundColor:"red",titleColor:"#fff",messageColor:"#fff",theme:"light",position:"topRight",title:"❌ Empty string:",message:"enter valid text"});return}t.reset(),p(),d(r).then(l=>{h(l.data)}).catch(l=>{y(l)}).finally(()=>{console.log("HTTP Request successfull"),c()})})});function h(t){c(),a=t.hits,a.length===0?i.show({balloon:!0,closeOnEscape:!0,closeOnClick:!0,backgroundColor:"yellow",theme:"light",position:"topRight",message:"Sorry, there are no images matching your search query. Please try again!"}):(i.show({balloon:!0,closeOnEscape:!0,closeOnClick:!0,backgroundColor:"blue",titleColor:"#fff",messageColor:"#fff",theme:"light",position:"topRight",message:`Congratulations! Found ${a.length} images`}),g(a))}function y(t){console.log("handleError data:",t),c()}
+    </li>`).join("");s.insertAdjacentHTML("beforeend",r),g.refresh()}function p(t){const s=document.querySelector(".gallery");s.innerHTML=""}function h(t){document.querySelector(".loader").classList.add("is-active")}function c(t){document.querySelector(".loader").classList.remove("is-active")}let a=[];document.addEventListener("DOMContentLoaded",()=>{console.log("DOM loaded");const t=document.querySelector(".form");t.addEventListener("submit",s=>{s.preventDefault(),p();const r=new FormData(s.currentTarget).get("search-text").trim();if(!r){console.log("Поле порожнє або містить лише пробіли"),i.show({balloon:!0,closeOnEscape:!0,closeOnClick:!0,backgroundColor:"red",titleColor:"#fff",messageColor:"#fff",theme:"light",position:"topRight",title:"❌ Empty string:",message:"enter valid text"});return}t.reset(),h(),d(r).then(o=>{y(o.data)}).catch(o=>{L(o)}).finally(()=>{console.log("HTTP Request successfull"),c()})})});function y(t){c(),a=t.hits,a.length===0?i.show({balloon:!0,closeOnEscape:!0,closeOnClick:!0,backgroundColor:"yellow",theme:"light",position:"topRight",message:"Sorry, there are no images matching your search query. Please try again!"}):(i.show({balloon:!0,closeOnEscape:!0,closeOnClick:!0,backgroundColor:"blue",titleColor:"#fff",messageColor:"#fff",theme:"light",position:"topRight",message:`Congratulations! Found ${a.length} images`}),m(a))}function L(t){console.log("handleError data:",t),c()}
 //# sourceMappingURL=index.js.map
