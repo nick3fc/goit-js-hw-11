@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .finally(() => {
         console.log('HTTP Request successfull');
+        hideLoader('FN');
       });
   });
 });
