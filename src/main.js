@@ -7,8 +7,8 @@ import { hideLoader } from './js/render-functions.js';
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import simpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+// import simpleLightbox from 'simplelightbox';
+// import 'simplelightbox/dist/simple-lightbox.min.css';
 
 let imagesArray = [];
 
@@ -55,13 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .finally(() => {
         console.log('HTTP Request successfull');
-        hideLoader('FN');
+        hideLoader();
       });
   });
 });
 
 function handleResponse(data) {
-  hideLoader('hiding');
+  //   hideLoader('hiding');
 
   imagesArray = data.hits;
   //   console.log('handleResponse data1:', imagesArray);
@@ -97,5 +97,5 @@ function handleResponse(data) {
 }
 function handleError(error) {
   console.log('handleError data:', error);
-  hideLoader('ER');
+  //   hideLoader('ER');
 }
