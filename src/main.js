@@ -97,5 +97,17 @@ function handleResponse(data) {
 }
 function handleError(error) {
   console.log('handleError data:', error);
+  iziToast.show({
+    balloon: true,
+    closeOnEscape: true,
+    closeOnClick: true,
+    backgroundColor: 'red',
+    titleColor: '#fff',
+    messageColor: '#fff',
+    theme: 'light', // dark
+    position: 'topRight',
+    title: '❌ Critical:',
+    message: `HTTP-request failed`,
+  });
   //   hideLoader('ER');
 }
