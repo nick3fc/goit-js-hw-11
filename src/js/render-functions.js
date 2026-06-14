@@ -1,63 +1,99 @@
-//  імпорт бібліотеки iziToast
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+// -----------lib connection code----------
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM готовий');
+// ----------- ------------------------------ ----------
+// ----------- export functions createGallery ----------
+// ----------- ------------------------------ ----------
 
-  const formSubmit = document.querySelector('.form');
-  //   console.log('форма знайдена');
-  formSubmit.addEventListener('submit', event => {
-    // console.log('форма відправлена');
-    event.preventDefault();
+export function createGallery(images) {
+  // console.log('handleResponse data2:', images);
 
-    const formDelay = Number(formSubmit.elements.delay.value);
-    const formState = formSubmit.elements.state.value;
+  // -----------make-gallery code----------
+  const galleryList = document.querySelector('.gallery');
+  // console.log(galleryList);
 
-    formSubmit.reset();
-    // console.log('formDelay: ', formDelay);
-    // console.log('formState: ', formState);
+  const newGalleryItems = images
+    .map(
+      image => `<li class="gallery-item">
+      <a class="gallery-link" href="${image.largeImageURL}">
+        <img
+          class="gallery-image"
+          src="${image.webformatURL}"
+        
+          alt="${image.tags}"
+        />
+      </a>
+      
+      <ul class='gallery-image-infolist'>
+        <li class='info-item'>
+        <span class="info-title">Likes</span>
+        <span class='info-value'>${image.likes}</span>
+        </li>
+        <li class='info-item'>
+        <span class="info-title">Views</span>
+        <span class='info-value'>${image.views}</span>
+        </li>
+        <li class='info-item'>
+        <span class="info-title">Comments</span>
+        <span class='info-value'>${image.comments}</span>
+        </li>
+        <li class='info-item'>
+        <span class="info-title">Downloads</span>
+        <span class='info-value'>${image.downloads}</span>
+        </li>
+      </ul>
+      
+    </li>`
+    )
+    .join('');
 
-    const submittedPromise = new Promise((resolve, reject) => {
-      //   console.log('проміс створено');
-      setTimeout(() => {
-        switch (formState) {
-          case 'fulfilled':
-            resolve(formDelay);
-            // console.log('resolve: ', formDelay);
-            break;
-          case 'rejected':
-            reject(formDelay);
-            // console.log('reject: ', formDelay);
-            break;
-        }
-      }, formDelay);
-    });
-    // console.log('обробка проміса');
-    submittedPromise
-      .then(value => {
-        iziToast.show({
-          balloon: true,
-          closeOnEscape: true,
-          closeOnClick: true,
-          backgroundColor: 'green',
-          theme: 'light', // dark
-          position: 'topRight',
-          title: '✅',
-          message: `Fulfilled promise in ${value}ms`,
-        });
-      })
-      .catch(error => {
-        iziToast.show({
-          balloon: true,
-          closeOnEscape: true,
-          closeOnClick: true,
-          backgroundColor: 'red',
-          theme: 'light', // dark
-          position: 'topRight',
-          title: '❌',
-          message: `Rejected promise in ${error}ms`,
-        });
-      });
+  galleryList.insertAdjacentHTML('beforeend', newGalleryItems);
+
+  // -----------gallery-click code----------
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+    showCounter: false,
   });
-});
+  lightbox.refresh();
+}
+
+// ----------- ------------------------------ ----------
+// ----------- export functions createGallery ----------
+// ----------- ------------------------------ ----------
+
+export function clearGallery(images) {
+  const galleryList = document.querySelector('.gallery');
+  galleryList.innerHTML = '';
+  images = [];
+  // lightbox.refresh();
+}
+
+// ----------- ------------------------------ ----------
+// -----------   export function showLoader   ----------
+// ----------- ------------------------------ ----------
+
+export function showLoader(arg) {
+  // console.log('arg:', arg);
+  const loaderPlace = document.querySelector('.container');
+
+  if (loaderPlace.querySelector('.loader')) return;
+
+  loaderPlace.insertAdjacentHTML('beforeend', `<span class="loader"></span>`);
+  const loader = loaderPlace.querySelector('.loader');
+}
+
+export function hideLoader(arg) {
+  if (!document.querySelector('.loader')) return;
+  const loader = document.querySelector('.loader').remove();
+}
+
+// +++++++++++ ++++++++++++++++++++++++++++++ +++++++++++
+// ++++++++++++++++++++ Description +++++++++++++++++++++
+// +++++++++++ ++++++++++++++++++++++++++++++ +++++++++++
+
+// createGallery(images). Ця функція повинна приймати масив images, створювати HTML-розмітку для галереї, додавати її в контейнер галереї та викликати метод екземпляра SimpleLightbox refresh(). Нічого не повертає.
+// clearGallery(). Ця функція нічого не приймає та повинна очищати вміст контейнера галереї. Нічого не повертає.
+// showLoader(). Ця функція нічого не приймає, повинна додавати клас для відображення лоадера. Нічого не повертає.
+// hideLoader(). Ця функція нічого не приймає, повинна прибирати клас для відображення лоадера. Нічого не повертає.
